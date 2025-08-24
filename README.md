@@ -15,6 +15,7 @@ Requirements:
 
 - libunity (`libunity` on AUR, `libunity-dev` on Debian/Ubuntu)
 - Python3
+- pygobject (installed through pip)
 
 Run:
 

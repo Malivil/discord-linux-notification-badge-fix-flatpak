@@ -21,15 +21,12 @@ def on_launcher_entry_update_signal_handler(*args):
     app_uri = unpacked[0]
 
     if app_uri == "application://discord.desktop":
+        (app_id, props) = args[5].unpack()
         params = GLib.Variant.parse(
             None,
-            args[5]
-            .print_(True)
-            .replace(
-                "application://discord.desktop", "application://discord-canary.desktop"
-            ),
+            "('{}', {{'count': <int64 {}>, 'count-visible': <true>}})".format('application://discord-canary.desktop', props['count']),
         )
-        emit_launcher_entry_update_signal(params)
+        emit_launcher_entry_update_signal(args[2], params)
 
 
 bus.signal_subscribe(
